@@ -1,0 +1,7 @@
+<?php
+class Manager extends Controller {
+  function index() {
+    echo "hello!";
+  }
+}
+?>
