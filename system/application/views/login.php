@@ -18,7 +18,9 @@
     'size' => '50',
   );
   
+  echo form_label('Username',$username['id']);
   echo form_input($username);
+  echo form_label('Password',$password['id']);
   echo form_password($password);
   
   echo form_reset('reset','Reset');
