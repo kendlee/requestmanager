@@ -4,7 +4,7 @@ class Manager extends Controller {
     parent::Controller();
   }
   function index() {
-    echo "hello!";
+    $this->load->view('login');
   }
 }
 ?>
