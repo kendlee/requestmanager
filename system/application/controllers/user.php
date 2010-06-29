@@ -7,8 +7,8 @@ class User extends Controller {
     //todo:integrate into database username and password
     
     $this->load->library('input');
-    echo 'Hello '.$this->input->post('username');
-    echo 'pass: '.$this->input->post('password');
+    echo 'Hello '.$this->input->post('username').'<br/>';
+    echo 'pass: '.$this->input->post('password').'<br/>';
   }
 }
 ?>
