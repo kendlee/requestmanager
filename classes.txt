@@ -1,5 +1,5 @@
 User {
-  u_id
+  id
   real_name
   username
   password
@@ -7,17 +7,17 @@ User {
 }
 
 Resident {
-  res_id
+  id
   name (last, first ?)
   details
 }
 
 Request {
-  req_id
+  id
   creation_date
   modified_date
-  Resident -> res_id
-  User -> u_id //who created the request
+  Resident -> id
+  User -> id //who created the request
   description
   status
   remarks
