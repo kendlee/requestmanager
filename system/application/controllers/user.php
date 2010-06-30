@@ -3,6 +3,11 @@ class User extends Controller {
   function Manager() {
     parent::Controller();
   }
+  
+  function add() {
+    
+  }
+  
   function verify() {
     //todo:integrate into database username and password
     
