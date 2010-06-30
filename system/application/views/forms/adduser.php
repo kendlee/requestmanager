@@ -48,7 +48,7 @@
   echo form_label('Verify password',$verify['id']);
   echo form_password($password);
   echo form_label('Real name',$real_name['id']);
-  echo form_password($real_name);
+  echo form_input($real_name);
   echo form_fieldset('Account type');
     echo form_radio($type_encoder);
     echo form_label('Encoder',$type_encoder['id']);

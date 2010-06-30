@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
   username VARCHAR( 64 ) NOT NULL ,
   password VARCHAR( 64 ) NOT NULL ,
   real_name VARCHAR( 100 ) NOT NULL ,
+  type TINYINT NOT NULL,
   UNIQUE (
     username
   )
