@@ -13,17 +13,18 @@ class User_manager extends Model {
       'username' => $username,
       'password' => md5($password)
     );
-    echo md5($password).'<br/>';
+    
     $query = $this->db->get_where('users',$condition);
     
     // correct username/password
     if ($query->num_rows() == 1) {
       //initialize session
       $user_data = $query->row();
+      //echo 'durr'.$user_data->username." ".$user_data->real_name
       $user_cookie = array (
-	'username' = $user_data->username;
-	'real_name' = $user_data->real_name;
-	'type' = $user_data->type;
+	'username' => $user_data->username,
+	'real_name' => $user_data->real_name,
+	'type' => $user_data->type
       );
       $this->session->set_userdata($user_cookie);
     }
