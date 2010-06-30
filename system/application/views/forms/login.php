@@ -3,7 +3,7 @@
   
   $attributes = array('id' => "login_form");
   
-  echo form_open('user/verify',$attributes);
+  echo form_open('manager/login',$attributes);
   
   $username = array (
     'name' => 'username',

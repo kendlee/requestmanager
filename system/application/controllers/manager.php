@@ -6,7 +6,7 @@ class Manager extends Controller {
   function index() {
     $this->load->view('forms/login');
   }
-  function registerUser() {
+  function register_user() {
     //todo relocated somewhere where admin only can access
     $this->load->view('forms/adduser');
   }
@@ -20,6 +20,13 @@ class Manager extends Controller {
     $type_encoder = $this->input->post('type');
     
     $this->userdb->add_user($username,$password,$real_name,$type_encoder);
+  }
+  
+  function login() {
+    $this->load->model('User_manager','userdb');
+    $username = $this->input->post('username');
+    $password = $this->input->post('password');
+    $this->userdb->login($username,$password);
   }
 }
 ?>

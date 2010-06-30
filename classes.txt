@@ -3,7 +3,7 @@ User {
   real_name
   username
   password
-  type : admin(1)|encoder(2) ?
+  type : admin(1)|encoder(0) ?
 }
 
 Resident {
