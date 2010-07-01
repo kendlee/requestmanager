@@ -3,7 +3,7 @@
   
   $attributes = array('id' => "adduser_form");
   
-  echo form_open('manager/register',$attributes);
+  echo form_open('manager/register_user',$attributes);
   
   $username = array (
     'name' => 'username',

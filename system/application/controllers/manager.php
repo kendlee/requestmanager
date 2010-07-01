@@ -13,23 +13,14 @@ class Manager extends Controller {
       $this->load->view('forms/login');
     }
   }
-  function register_user() {
-    //todo relocated somewhere where admin only can access
-    $this->load->view('forms/adduser');
+
+  function add_user() {
+    //todo: only admin should be able to access
+    $this->load->view('forms/add_user');
   }
-  
-  //called to add users
-  function register() {
-    //TODO:check user privilege first
-    $this->load->model('User_manager','userdb');
-    $this->load->library('input');
-    $username = $this->input->post('username');
-    $password = $this->input->post('password');
-    //$verify = $this->input->post('verify');
-    $real_name = $this->input->post('realname');
-    $type_encoder = $this->input->post('type');
-    
-    $this->userdb->add_user($username,$password,$real_name,$type_encoder);
+  function add_resident() {
+    //todo: only logged in user can access
+    $this->load->view('forms/add_resident');
   }
   
   //called to login to the system
@@ -38,7 +29,6 @@ class Manager extends Controller {
     $this->load->library('input');
     $username = $this->input->post('username');
     $password = $this->input->post('password');
-    echo'k';
     $this->userdb->login($username,$password);
     redirect('','refresh');
   }
@@ -47,5 +37,29 @@ class Manager extends Controller {
     $this->session->sess_destroy();
     redirect('','refresh');
   }
+  
+  /*database-related*/
+
+  /*for users table*/
+  //called to add users
+  function register_user() {
+    //todo: only admin should be able to access
+    $this->load->model('User_manager','userdb');
+    $this->load->library('input');
+    $username = $this->input->post('username');
+    $password = $this->input->post('password');
+    //$verify = $this->input->post('verify');
+    $real_name = $this->input->post('realname');
+    $type_encoder = $this->input->post('type');
+    //TODO:verify password
+    $this->userdb->add_user($username,$password,$real_name,$type_encoder);
+  }
+  
+  /*for residents table*/
+  function register_resident() {
+    //todo: only logged in user can access
+    
+  }
+  
 }
 ?>

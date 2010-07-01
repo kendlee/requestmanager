@@ -10,3 +10,20 @@ CREATE TABLE IF NOT EXISTS users (
     username
   )
 );
+
+CREATE TABLE IF NOT EXISTS residents (
+  id INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  name VARCHAR( 100 ) NOT NULL ,
+  address VARCHAR( 255 ),
+  sex TINYINT VARCHAR ( 1 ),
+  status TINYINT VARCHAR ( 1 ),
+  precinct VARCHAR ( 10 ),
+  birthday DATE,
+  barangay VARCHAR ( 100 ),
+  category INT(), /*to categorize residents*/
+  requests INT( 3 ) DEFAULT 0, /*for faster queries, simply tracks the number of requests*/
+  remarks VARCHAR ( 255 )
+  UNIQUE (
+    name
+  )
+);
