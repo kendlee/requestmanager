@@ -3,12 +3,16 @@ class Manager extends Controller {
   function Manager() {
     parent::Controller();
   }
-  function index() {
+  function index($view = 1/*,$page = "", $criteria = "", $asc = ""*/) {
     if ($this->session->userdata('username')!='') {
       //load main view
-	  echo '<a href="'.site_url('manager/add_resident').'">Add resident</a> ';
-	  echo '<a href="'.site_url('manager/add_user').'">Add user</a> ';
-      echo '<a href="'.site_url('manager/logout').'">Logout</a>';
+      $params = array (
+	'view' => $view
+      );
+      $this->load->view('navigation');
+      
+      $this->load->view('selector');
+      $this->load->view('list_residents',$params);
     }
     else {
       //login screen
@@ -18,10 +22,12 @@ class Manager extends Controller {
 
   function add_user() {
     //todo: only admin should be able to access
+    $this->load->view('navigation');
     $this->load->view('forms/add_user');
   }
   function add_resident() {
     //todo: only logged in user can access
+    $this->load->view('navigation');
     $this->load->view('forms/add_resident');
   }
   
