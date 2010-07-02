@@ -38,8 +38,8 @@ $active_group = "default";
 $active_record = TRUE;
 
 $db['default']['hostname'] = "localhost";
-$db['default']['username'] = "testuser";
-$db['default']['password'] = "password";
+$db['default']['username'] = "root";
+$db['default']['password'] = "";
 $db['default']['database'] = "request_manager";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";

@@ -6,6 +6,8 @@ class Manager extends Controller {
   function index() {
     if ($this->session->userdata('username')!='') {
       //load main view
+	  echo '<a href="'.site_url('manager/add_resident').'">Add resident</a> ';
+	  echo '<a href="'.site_url('manager/add_user').'">Add user</a> ';
       echo '<a href="'.site_url('manager/logout').'">Logout</a>';
     }
     else {
@@ -58,7 +60,21 @@ class Manager extends Controller {
   /*for residents table*/
   function register_resident() {
     //todo: only logged in user can access
-    
+    $this->load->model('Resident_manager','residentdb');
+	$this->load->library('input');
+
+	$full_name = $this->input->post('last_name').', '.$this->input->post('first_name');
+	$address = $this->input->post('address');
+	$sex = $this->input->post('sex');
+	$status = $this->input->post('status');
+	$precinct = $this->input->post('precinct');
+	$barangay = $this->input->post('barangay');
+	//todo: birthday fetching
+	$birthday = "1950-01-01"; //yyyy-mm-dd
+	$category = $this->input->post('type');
+	$remarks = $this->input->post('remarks');
+	
+	$this->residentdb->add_resident($full_name, $address, $sex, $status, $precinct, $barangay, $birthday, $category, $remarks);
   }
   
 }
