@@ -15,15 +15,30 @@ CREATE TABLE IF NOT EXISTS residents (
   id INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
   name VARCHAR( 100 ) NOT NULL ,
   address VARCHAR( 255 ),
-  sex TINYINT VARCHAR ( 1 ),
-  status TINYINT VARCHAR ( 1 ),
+  sex VARCHAR ( 1 ),
+  status VARCHAR ( 1 ),
   precinct VARCHAR ( 10 ),
   birthday DATE,
   barangay VARCHAR ( 100 ),
-  category INT(), /*to categorize residents*/
+  category INT( 1 ), /*to categorize residents*/
   requests INT( 3 ) DEFAULT 0, /*for faster queries, simply tracks the number of requests*/
   remarks VARCHAR ( 255 )
-  UNIQUE (
+  /*UNIQUE (
     name
-  )
+  )*/
+);
+
+CREATE TABLE IF NOT EXISTS requests (
+  id INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  create_user_id int ( 11 ),
+  FOREIGN KEY (create_user_id) REFERENCES users(id),
+  creation_date DATE,
+  mod_user_id int ( 11 ),
+  FOREIGN KEY (mod_user_id) REFERENCES users(id),
+  modified_date DATE,
+  resident_id int ( 11 ),
+  FOREIGN KEY (resident_id) REFERENCES residents(id),
+  description VARCHAR ( 255 ),
+  status VARCHAR ( 15 ),
+  remarks VARCHAR ( 255 )
 );
