@@ -40,5 +40,6 @@ CREATE TABLE IF NOT EXISTS requests (
   FOREIGN KEY (resident_id) REFERENCES residents(id),
   description VARCHAR ( 255 ),
   status VARCHAR ( 15 ),
-  remarks VARCHAR ( 255 )
+  remarks VARCHAR ( 255 ),
+  deadline DATE
 );
