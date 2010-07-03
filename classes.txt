@@ -21,4 +21,5 @@ Request {
   description
   status
   remarks
+  deadline
 }
