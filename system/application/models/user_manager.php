@@ -22,6 +22,7 @@ class User_manager extends Model {
       $user_data = $query->row();
       //echo 'durr'.$user_data->username." ".$user_data->real_name
       $user_cookie = array (
+	'id' => $user_data->id,
 	'username' => $user_data->username,
 	'real_name' => $user_data->real_name,
 	'type' => $user_data->type

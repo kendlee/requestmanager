@@ -5,8 +5,7 @@
       'id' => $rid
     ) 
   );
-  
   //TODO:place all of the attributes
   echo $query->row()->name;
-
-//end of view_resident.php
+?>
+  <a href="<?php echo site_url('manager/add_request/'.$query->row()->id)?>">Add request</a>
