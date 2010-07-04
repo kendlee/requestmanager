@@ -31,12 +31,14 @@
   $sex_m = array (
     'name' => 'sex',
     'id' => 'male',
-    'value' => 'm'
+    'value' => 'm',
+    'desc' => array_get('SEX',1)
   );
   $sex_f = array (
     'name' => 'sex',
     'id' => 'female',
-    'value' => 'f'
+    'value' => 'f',
+    'desc' => array_get('SEX',2)
   );
   $status_s = array (
     'name' => 'status',
@@ -75,26 +77,26 @@
   $type_1 = array (
     'name' => 'type',
     'id' => 'type1',
-    'desc' => 'District 2, Registered',
+    'desc' => array_get('CATEGORY',1),
     'value' => '1'
   );
   $type_2 = array (
     'name' => 'type',
     'id' => 'type2',
-    'desc' => 'District 2, Not registered',
+    'desc' => array_get('CATEGORY',2),
     'value' => '2'
   );
   $type_3 = array (
     'name' => 'type',
     'id' => 'type3',
-    'desc' => 'QC Resident, Not District 2',
-    'value' => '2'
+    'desc' => array_get('CATEGORY',3),
+    'value' => '3'
   );
   $type_4 = array (
     'name' => 'type',
     'id' => 'type4',
-    'desc' => 'Outside QC',
-    'value' => '2'
+    'desc' => array_get('CATEGORY',4),
+    'value' => '4'
   );
   $remarks = array (
     'name' => 'remarks',
@@ -121,8 +123,8 @@
     form_label($first_name['desc'],$first_name['id']).form_input($first_name),
     form_label($last_name['desc'],$last_name['id']).form_input($last_name),
     form_label($address['desc'],$address['id']).form_textarea($address),
-    form_fieldset('Sex').form_radio($sex_m).form_label($sex_m['id'],$sex_m['id']).
-      form_radio($sex_f).form_label($sex_f['id'],$sex_f['id']).form_fieldset_close(),
+    form_fieldset('Sex').form_radio($sex_m).form_label($sex_m['desc'],$sex_m['id']).
+      form_radio($sex_f).form_label($sex_f['desc'],$sex_f['id']).form_fieldset_close(),
     form_fieldset('Civil status').form_radio($status_s).form_label($status_s['id'],$status_s['id']).
       form_radio($status_m).form_label($status_m['id'],$status_m['id']).
       form_radio($status_l).form_label($status_l['id'],$status_l['id']).

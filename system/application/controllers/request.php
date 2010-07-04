@@ -1,5 +1,5 @@
 <?php
-class Resident extends Controller {
+class Request extends Controller {
   function Manager() {
     parent::Controller();
   }

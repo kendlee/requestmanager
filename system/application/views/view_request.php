@@ -1,12 +1,16 @@
 <?php
   $this->CI =& get_instance();
-  $query = $this->CI->db->get_where('requests',
+  $this->CI->db->select('*');
+  $this->CI->db->from('requests');
+  $this->CI->db->join('(SELECT id as resid, category, name FROM residents) as residents','requests.resident_id = residents.resid');
+  $this->CI->db->where('id',$rid);
+  $query = $this->db->get();
+  /*$query = $this->CI->db->get_where('requests',
     array(
       'id' => $rid
     ) 
-  );
+  );*/
   //TODO:place all of the attributes
-  echo $query->row()->name;
   /*$form_element = array (
     form_label($first_name['desc'],$first_name['id']).form_input($first_name),
     form_label($last_name['desc'],$last_name['id']).form_input($last_name),
@@ -29,11 +33,15 @@
 ?>
 
 <div id="resident_info">
-  <a href="<?php echo site_url('manager/add_request/'.$query->row()->id)?>">Add request</a>
+  <a href="<?php echo site_url('request/edit/'.$query->row()->id)?>">Edit request</a>
   <ul>
     <li>
       <span class="desc">Request id</span>
       <span class="info"><?=$query->row()->id?></span>
+    </li>
+    <li>
+      <span class="desc">Resident</span>
+      <span class="info"><?=$query->row()->name?></span>
     </li>
     <li>
       <span class="desc">Status</span>

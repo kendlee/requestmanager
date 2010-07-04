@@ -39,7 +39,7 @@
   $status_1 = array (
     'name' => 'status',
     'id' => 'stat1',
-    'desc' => 'New',
+    'desc' => array_get('STATUS',1),
     'value' => '1'
   );
   $status_2 = array (

@@ -31,7 +31,7 @@
     <?php foreach ($query->result() as $row): ?>
     <?php $val = ($c++%2==1) ? 'odd' : 'even'; ?>
       <tr class="<?=$val?>'">
-	<td class="res_name"><a href="<?=site_url('resident/index/'.$row->id)?>"><?=$row->name?></a></td>
+	<td class="res_name"><a href="<?=site_url('resident/index/'.$row->id)?>" target="_blank"><?=$row->name?></a></td>
 	<td class="res_barangay"><?=$row->barangay?></td>
 	<td class="res_precinct"><?=$row->precinct?></td>
 	<td class="res_sex"><?=$row->sex?></td>
