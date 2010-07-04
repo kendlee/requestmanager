@@ -55,15 +55,15 @@ class Manager extends Controller {
   
   /* loads by_request view*/
   function by_request($view = 1) {
-    /*$display = array (
-    'view' => $view
+    $display = array (
+      'view' => $view
     );
     
     $params = array (
-    'has_menu' => TRUE,
-    'content' => $this->load->view('selector','',true).$this->load->view('list_residents',$display,true)
+      'has_menu' => TRUE,
+      'content' => $this->load->view('selector','',true).$this->load->view('list_requests',$display,true)
     );
-    $this->load->view('page',$params);*/
+    $this->load->view('page',$params);
   }
 
   function add_user() {
@@ -169,18 +169,18 @@ class Manager extends Controller {
     $this->load->model('Request_manager','requestdb');
     $this->load->library('input');
     
-    $full_name = $this->input->post('last_name').', '.$this->input->post('first_name');
-    $address = $this->input->post('address');
-    $sex = $this->input->post('sex');
+    $create_user_id = $this->input->post('create_user_id'); 
+    $mod_user_id = $this->input->post('mod_user_id');
+    $resident_id = $this->input->post('resident_id');
+    $description = $this->input->post('description');
+    $deadline = ($this->input->post('has_deadline') === "1") ? 
+      $this->input->post('year').$this->input->post('month').$this->input->post('day') : NULL;
     $status = $this->input->post('status');
-    $precinct = $this->input->post('precinct');
-    $barangay = $this->input->post('barangay');
-    $birthday = $this->input->post('year').$this->input->post('month').$this->input->post('day');
-    $category = $this->input->post('type');
     $remarks = $this->input->post('remarks');
     
-    $this->residentdb->add_resident($full_name, $address, $sex, $status, $precinct, $barangay, $birthday, $category, $remarks);
-    redirect($this->homepage,'refresh');
+    $this->requestdb->add_request($create_user_id, $mod_user_id, $resident_id, $description, $status, $remarks, $deadline);
+    
+    //redirect($this->homepage,'refresh');
   }
 }
 ?>

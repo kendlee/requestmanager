@@ -1,19 +1,21 @@
 <?php
 class Request_manager extends Model {
   
-  function add_request() {
+  function add_request($create_user_id="", $mod_user_id="", $resident_id="", $description="", $status="", $remarks="", $deadline = NULL) {
 
-    
-    /*$this->db->set('name',$full_name);
-    $this->db->set('address',$address);
-    $this->db->set('sex',$sex);
+    $timestamp = date('Y-m-d H:i:s', time());
+    $this->db->set('creation_date',$timestamp);
+    $this->db->set('modified_date',$timestamp);
+    $this->db->set('create_user_id',$create_user_id);
+    $this->db->set('mod_user_id',$mod_user_id);
+    $this->db->set('resident_id',$resident_id);
+    $this->db->set('description',$description);
     $this->db->set('status',$status);
-    $this->db->set('precinct',$precinct);
-    $this->db->set('barangay',$barangay);
-    $this->db->set('birthday',$birthday);
-    $this->db->set('category',$category);
     $this->db->set('remarks',$remarks);
-    $this->db->insert('residents');*/
+    if (!is_null($deadline)) {
+      $this->db->set('deadline',$deadline);
+    }
+    $this->db->insert('requests');
   }
 
 }

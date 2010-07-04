@@ -1,20 +1,7 @@
 <?php
   $this->load->helper('form');
   $this->load->library('formdate');
-  /* id INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-  create_user_id int ( 11 ),
-  FOREIGN KEY (create_user_id) REFERENCES users(id),
-  creation_date DATE,
-  mod_user_id int ( 11 ),
-  FOREIGN KEY (mod_user_id) REFERENCES users(id),
-  modified_date DATE,
-  resident_id int ( 11 ),
-  FOREIGN KEY (resident_id) REFERENCES residents(id),
-  description VARCHAR ( 255 ),
-  status VARCHAR ( 15 ),
-  remarks VARCHAR ( 255 ),
-  deadline DATE
-  );*/
+  
   $hidden = array(
     'create_user_id' => $user_id, 
     'mod_user_id' => $user_id,
@@ -49,6 +36,41 @@
     'cols' => '100',
     'desc' => 'Remarks'
   );
+  $status_1 = array (
+    'name' => 'status',
+    'id' => 'stat1',
+    'desc' => 'New',
+    'value' => '1'
+  );
+  $status_2 = array (
+    'name' => 'status',
+    'id' => 'stat2',
+    'desc' => 'Rejected',
+    'value' => '4'
+  );
+  $status_3 = array (
+    'name' => 'status',
+    'id' => 'stat3',
+    'desc' => 'Pending',
+    'value' => '2'
+  );
+  $status_4 = array (
+    'name' => 'status',
+    'id' => 'stat4',
+    'desc' => 'Complete',
+    'value' => '3'
+  );
+  
+  /*  id INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  creation_date DATE,
+  modified_date DATE,
+  /create_user_id int ( 11 ),
+  /mod_user_id int ( 11 ),
+  /resident_id int ( 11 ),
+  /description VARCHAR ( 255 ),
+  /status VARCHAR ( 15 ),
+  /remarks VARCHAR ( 255 ),
+  /deadline DATE*/
   
   $formdate = new FormDate();
   $formdate->year['start'] = 2010;
@@ -61,6 +83,10 @@
     form_label($has_deadline['desc'],$has_deadline['id']).form_checkbox($has_deadline),
     '<label>Deadine</label>'.$formdate->selectMonth().$formdate->selectDay().$formdate->selectYear(),
     form_label($remarks['desc'],$remarks['id']).form_textarea($remarks),
+    form_fieldset('Status').form_radio($status_1).form_label($status_1['desc'],$status_1['id']).
+      form_radio($status_2).form_label($status_2['desc'],$status_2['id']).
+      form_radio($status_3).form_label($status_3['desc'],$status_3['id']).
+      form_radio($status_4).form_label($status_4['desc'],$status_4['id']).form_fieldset_close(),
   );
   
   foreach($form_element as $item) {

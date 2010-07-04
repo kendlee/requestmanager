@@ -12,7 +12,7 @@ class Resident extends Controller {
       $params = array (
 	'rid' => $rid
       );
-      $this->load->view('view_resident',$params);
+      $this->load->view('view_request',$params);
     }
     else {
       //goto login screen

@@ -9,41 +9,37 @@
     ), 
     100, 0
   );
-  
-  echo '<div id="resident_list">';
-  echo '<table id="resident_table">';
-  echo '<thead class="table_header">';
-  echo '<tr>';
-  #echo '<th class="res_id">Res ID</th>';
-  echo '<th class="res_name">Name</th>';
-  echo '<th class="res_barangay">Barangay</th>';
-  echo '<th class="res_precinct">Precinct</th>';
-  echo '<th class="res_sex">Sex</th>';
-  echo '<th class="res_status">Status</th>';
-  echo '<th class="res_birthday">Birthday</th>';
-  echo '<th class="res_request">Requests</th>';
-  echo '</tr>';
-  echo '</thead>';
-  
   $c = 0;
+?>
   
-  echo '<tbody class="table_header">';
-  
-  foreach ($query->result() as $row) {
-    $val = ($c++%2==1) ? 'odd' : 'even';
-    echo '<tr class="'.$val.'">';
-    echo '<td class="res_name"><a href="'.site_url('resident/index/'.$row->id).'">'.$row->name.'</a></td>';
-    echo '<td class="res_barangay">'.$row->barangay.'</td>';
-    echo '<td class="res_precinct">'.$row->precinct.'</td>';
-    echo '<td class="res_sex">'.$row->sex.'</td>';
-    echo '<td class="res_status">'.$row->status.'</td>';
-    echo '<td class="res_birthday">'.$row->birthday.'</td>';
-    echo '<td class="res_request">'.$row->requests.'</td>';
-    echo '</tr>';
-  }
-  echo '</tbody>';
-  
-  echo '</table>';
-  
-  echo '</div>';
-//end of list_residents.php
+<div id="resident_list">
+  <table id="resident_table">
+    <thead class="table_header">
+      <tr>
+	<!--<th class="res_id">Res ID</th>'-->
+	<th class="res_name">Name</th>
+	<th class="res_barangay">Barangay</th>
+	<th class="res_precinct">Precinct</th>
+	<th class="res_sex">Sex</th>
+	<th class="res_status">Status</th>
+	<th class="res_birthday">Birthday</th>
+	<th class="res_request">Requests</th>
+      </tr>
+    </thead>
+    <tbody class="table_header">
+
+    <?php foreach ($query->result() as $row): ?>
+    <?php $val = ($c++%2==1) ? 'odd' : 'even'; ?>
+      <tr class="<?=$val?>'">
+	<td class="res_name"><a href="<?=site_url('resident/index/'.$row->id)?>"><?=$row->name?></a></td>
+	<td class="res_barangay"><?=$row->barangay?></td>
+	<td class="res_precinct"><?=$row->precinct?></td>
+	<td class="res_sex"><?=$row->sex?></td>
+	<td class="res_status"><?=$row->status?></td>
+	<td class="res_birthday"><?=$row->birthday?></td>
+	<td class="res_request"><?=$row->requests?></td>
+      </tr>
+    <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
