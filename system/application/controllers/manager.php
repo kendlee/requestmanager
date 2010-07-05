@@ -188,7 +188,7 @@ class Manager extends Controller {
     
     $this->requestdb->add_request($create_user_id, $mod_user_id, $resident_id, $description, $status, $remarks, $deadline);
     
-    //redirect($this->homepage,'refresh');
+    redirect('resident/index/'.$resident_id,'refresh');
   }
   
   function update_request() {
