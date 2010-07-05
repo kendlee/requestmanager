@@ -1,5 +1,6 @@
 <?php $this->load->helper('form'); ?>
 <div> 
+<a href="<?php echo site_url('resident/index/'.$this->uri->segment(3))?>">View</a>
 
 <?php if($access): ?>
   <?php

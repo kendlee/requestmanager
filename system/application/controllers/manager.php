@@ -190,5 +190,22 @@ class Manager extends Controller {
     
     //redirect($this->homepage,'refresh');
   }
+  
+  function update_request() {
+    //todo: only logged in user can access
+    $this->load->model('Request_manager','requestdb');
+    $this->load->library('input');
+    $id = $this->input->post('id');
+    $mod_user_id = $this->input->post('mod_user_id');
+    $description = $this->input->post('description');
+    $deadline = ($this->input->post('has_deadline') === "1") ? 
+      $this->input->post('year').$this->input->post('month').$this->input->post('day') : NULL;
+    $status = $this->input->post('status');
+    $remarks = $this->input->post('remarks');
+    
+    $this->requestdb->update_request($id, $mod_user_id, $description, $status, $remarks, $deadline);
+    
+    redirect('request/index/'.$id,'refresh');
+  }
 }
 ?>

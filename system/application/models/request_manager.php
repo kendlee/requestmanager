@@ -33,6 +33,19 @@ class Request_manager extends Model {
     $this->db->insert('requests',$request);
   }
   
+  function update_request($id="", $mod_user_id="", $description="", $status="", $remarks="", $deadline="") {
+    $timestamp = date('Y-m-d H:i:s', time());
+    $request = array(
+      'modified_date'=>$timestamp,
+      'mod_user_id'=>$mod_user_id,
+      'description'=>$description,
+      'status'=>$status,
+      'remarks'=>$remarks,
+      'deadline'=>$deadline,
+    );
+    $this->db->where('id', $id);
+    $this->db->update('requests', $request); 
+  }
   
   /* get the name of the resident that used created the request
    *
@@ -41,13 +54,6 @@ class Request_manager extends Model {
    */
   
   function get_resident_name($id = "") {
-    /*$query = $this->db->get_where('requests',array ('id' => $id));
-    $this->db->flush_cache();
-    return array (
-      'resident_name' = $query->row()->name,
-      'resident_id' = $query->row()
-    );*/
-    
     $this->db->select('*');
     $this->db->from('requests');
     $this->db->join('(SELECT id as resid, category, name FROM residents) as residents','requests.resident_id = residents.resid');
@@ -55,5 +61,5 @@ class Request_manager extends Model {
     $query = $this->db->get();
     return $query->row()->name;
   }
-
+  
 }

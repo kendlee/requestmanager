@@ -1,9 +1,8 @@
 <?php 
-  $this->CI =& get_instance();
   //$this->CI->db->get_where($view);
   
   /*$query = $this->CI->db->get('residents',100,0);*/
-  $query = $this->CI->db->get_where('residents',
+  $query = $this->db->get_where('residents',
     array(
       'category' => $view
     ), 

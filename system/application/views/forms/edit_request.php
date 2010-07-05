@@ -1,5 +1,6 @@
 <?php $this->load->helper('form'); ?>
 <div> 
+<a href="<?php echo site_url('request/index/'.$this->uri->segment(3))?>">View</a>
 
 <?php if($access): ?>
   <?php $this->load->library('formdate');
@@ -9,6 +10,7 @@
     $result = $query->row();
 
     $hidden = array(
+      'id' => $id,
       'mod_user_id' => $user_id,
     );
     

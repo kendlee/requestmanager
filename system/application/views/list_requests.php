@@ -1,11 +1,10 @@
 <?php 
-  $this->CI =& get_instance();
   //$query = $this->CI->db->get('requests',100,0);
   //$this->CI->db->select('id AS req_id,create_user_id,creation_date,mod_user_id,modified_date,resident_id,status,remarks,deadline');
-  $this->CI->db->select('*');
-  $this->CI->db->from('requests');
-  $this->CI->db->join('(SELECT id as resid, category, name FROM residents) as residents','requests.resident_id = residents.resid');
-  $this->CI->db->where('category',$view);
+  $this->db->select('*');
+  $this->db->from('requests');
+  $this->db->join('(SELECT id as resid, category, name FROM residents) as residents','requests.resident_id = residents.resid');
+  $this->db->where('category',$view);
   $query = $this->db->get();
   //$query = $this->db->query("SELECT * FROM (requests) JOIN (SELECT id as resid, category FROM residents) AS residents ON requests.resident_id = residents.resid WHERE residents.category = 1");
   /*$query = $this->CI->db->get_where('request',

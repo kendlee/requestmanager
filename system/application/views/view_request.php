@@ -45,7 +45,7 @@
     </li>
     <li>
       <span class="desc">Status</span>
-      <span class="info"><?=$query->row()->status?></span>
+      <span class="info"><?=array_get('STATUS',$query->row()->status)?></span>
     </li>
     <li>
       <span class="desc">Deadline</span>
