@@ -88,6 +88,13 @@
     $formdate->year['end'] = 2010+10; //TODO: auto increment based on system time
     //$formdate->month['values'] = 'numbers';
     
+    if (!is_null($result->deadline)) {
+      $fulldate = explode('-',$result->deadline);
+      $formdate->year['selected'] = $fulldate[0];
+      $formdate->month['selected'] = $fulldate[1];
+      $formdate->day['selected'] = $fulldate[2];    
+    }
+    
     $form_element = array (
       '<div class="desc">Encoder</div><div class="info">'.$encoder_name.'</div>',
       '<div class="desc">Resident</div><div class="info">'.$resident_name.'</div>',
