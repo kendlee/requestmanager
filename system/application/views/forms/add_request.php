@@ -5,11 +5,12 @@
   $hidden = array(
     'create_user_id' => $user_id, 
     'mod_user_id' => $user_id,
-    'resident_id' => $this->uri->segment(3)
+    'resident_id' => $resident_id
   );
-  echo $real_name;
   
   $attributes = array('id' => "addrequest_form");
+  
+  echo '<h2>Add request</h2>';
   
   echo form_open('manager/register_request',$attributes,$hidden);
   
@@ -78,15 +79,16 @@
   //$formdate->month['values'] = 'numbers';
   
   $form_element = array (
-    //form_label($first_name['desc'],$first_name['id']).form_input($first_name),
+    '<div class="desc">Encoder</div><div class="info">'.$encoder_name.'</div>',
+    '<div class="desc">Resident</div><div class="info">'.$resident_name.'</div>',
     form_label($description['desc'],$description['id']).form_textarea($description),
     form_label($has_deadline['desc'],$has_deadline['id']).form_checkbox($has_deadline),
     '<label>Deadine</label>'.$formdate->selectMonth().$formdate->selectDay().$formdate->selectYear(),
-    form_label($remarks['desc'],$remarks['id']).form_textarea($remarks),
     form_fieldset('Status').form_radio($status_1).form_label($status_1['desc'],$status_1['id']).
       form_radio($status_2).form_label($status_2['desc'],$status_2['id']).
       form_radio($status_3).form_label($status_3['desc'],$status_3['id']).
       form_radio($status_4).form_label($status_4['desc'],$status_4['id']).form_fieldset_close(),
+    form_label($remarks['desc'],$remarks['id']).form_textarea($remarks),
   );
   
   foreach($form_element as $item) {

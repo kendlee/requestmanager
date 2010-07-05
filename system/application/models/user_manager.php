@@ -6,7 +6,7 @@ class User_manager extends Model {
     $this->db->set('real_name',$real_name);
     $this->db->set('type',$type);
     $this->db->insert('users');
-    echo md5($password);
+    //echo md5($password);
   }
   function login($username='',$password='') {
     $condition = array (

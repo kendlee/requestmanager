@@ -43,12 +43,16 @@
       <span class="info"><?=$query->row()->name?></span>
     </li>
     <li>
+      <span class="desc">Address</span>
+      <span class="info"><?=$query->row()->address?></span>
+    </li>
+    <li>
       <span class="desc">Civil Status</span>
-      <span class="info"><?=$query->row()->status?></span>
+      <span class="info"><?=array_get('CIVIL',$query->row()->status)?></span>
     </li>
     <li>
       <span class="desc">Sex</span>
-      <span class="info"><?=$query->row()->sex?></span>
+      <span class="info"><?=array_get('SEX',$query->row()->sex)?></span>
     </li>
     <li>
       <span class="desc">Birthday</span>

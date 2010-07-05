@@ -84,9 +84,14 @@ class Manager extends Controller {
   }
   function add_request() {
     //todo: only logged in user can access
+	$this->load->model('Resident_manager','residentdb');
+	$resident_id = $this->uri->segment(3);
+	//$this->residentdb->
     $request_credentials = array (
       'user_id' => $this->session->userdata('id'),
-      'real_name' => $this->session->userdata('real_name')
+      'encoder_name' => $this->session->userdata('real_name'), //realname of encoder
+	  'resident_id' => $resident_id,
+	  'resident_name' => $this->residentdb->get_resident_name($resident_id)
     );
     
     $params = array (

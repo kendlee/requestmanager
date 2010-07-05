@@ -32,33 +32,37 @@
     'name' => 'sex',
     'id' => 'male',
     'value' => 'm',
-    'desc' => array_get('SEX',1)
+    'desc' => array_get('SEX','m'),
   );
   $sex_f = array (
     'name' => 'sex',
     'id' => 'female',
     'value' => 'f',
-    'desc' => array_get('SEX',2)
+    'desc' => array_get('SEX','f'),
   );
   $status_s = array (
     'name' => 'status',
     'id' => 's',
-    'value' => 's'
+    'value' => 's',
+    'desc' => array_get('CIVIL','s'),
   );
   $status_m = array (
     'name' => 'status',
     'id' => 'm',
-    'value' => 'm'
+    'value' => 'm',
+	'desc' => array_get('CIVIL','m'),
   );
   $status_w = array (
     'name' => 'status',
     'id' => 'w',
-    'value' => 'w'
+    'value' => 'w',
+	'desc' => array_get('CIVIL','w'),
   );
   $status_l = array (
     'name' => 'status',
     'id' => 'l',
-    'value' => 'l'
+    'value' => 'l',
+	'desc' => array_get('CIVIL','l'),
   );
   $precinct = array (
     'name' => 'precinct',
@@ -112,23 +116,16 @@
   $formdate->year['end'] = 2010; //TODO: auto increment based on system time
   //$formdate->month['values'] = 'numbers';
   
-  /*id INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-  precinct VARCHAR ( 10 ),
-  birthday DATE,
-  barangay VARCHAR ( 100 ),
-  type INT(), /*to categorize residents
-  requests INT( 3 ) , /*for faster queries the number of requests
-  */
   $form_element = array (
     form_label($first_name['desc'],$first_name['id']).form_input($first_name),
     form_label($last_name['desc'],$last_name['id']).form_input($last_name),
     form_label($address['desc'],$address['id']).form_textarea($address),
     form_fieldset('Sex').form_radio($sex_m).form_label($sex_m['desc'],$sex_m['id']).
       form_radio($sex_f).form_label($sex_f['desc'],$sex_f['id']).form_fieldset_close(),
-    form_fieldset('Civil status').form_radio($status_s).form_label($status_s['id'],$status_s['id']).
-      form_radio($status_m).form_label($status_m['id'],$status_m['id']).
-      form_radio($status_l).form_label($status_l['id'],$status_l['id']).
-      form_radio($status_w).form_label($status_w['id'],$status_w['id']).form_fieldset_close(),
+    form_fieldset('Civil status').form_radio($status_s).form_label($status_s['desc'],$status_s['id']).
+      form_radio($status_m).form_label($status_m['desc'],$status_m['id']).
+      form_radio($status_l).form_label($status_l['desc'],$status_l['id']).
+      form_radio($status_w).form_label($status_w['desc'],$status_w['id']).form_fieldset_close(),
     form_label($precinct['desc'],$precinct['id']).form_input($precinct),
     form_label($barangay['desc'],$barangay['id']).form_input($barangay),
     '<label>Birthday</label>'.$formdate->selectMonth().$formdate->selectDay().$formdate->selectYear(),

@@ -54,20 +54,25 @@ define('STATUS_1','New');
 define('STATUS_2','Rejected');
 define('STATUS_3','Pending');
 define('STATUS_4','Complete');*/
-
-function array_get($key,$index=NULL) {
   $req_constants = array (
     'CATEGORY_1'=>'District 2, Registered',
     'CATEGORY_2'=>'District 2, Not registered',
     'CATEGORY_3'=>'QC Resident, Not District 2',
     'CATEGORY_4'=>'Outside QC',
-    'SEX_1'=>'male',
-    'SEX_2'=>'female',
+	'CIVIL_s'=>'S',
+	'CIVIL_m'=>'M',
+	'CIVIL_l'=>'L',
+	'CIVIL_w'=>'W',	
+    'SEX_m'=>'male',
+    'SEX_f'=>'female',
     'STATUS_1'=>'New',
     'STATUS_2'=>'Rejected',
     'STATUS_3'=>'Pending',
     'STATUS_4'=>'Complete'
   );
+  
+function array_get($key,$index=NULL) {
+  global $req_constants;
   return is_null($index) ? $req_constants[$key] : $req_constants[$key."_".$index] ;
 }
 

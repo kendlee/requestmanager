@@ -15,5 +15,13 @@ class Resident_manager extends Model {
     $this->db->set('remarks',$remarks);
     $this->db->insert('residents');
   }
+  
+  function get_resident_name($id = "") {
+    $query = $this->db->get_where('residents',
+	  array ('id' => $id));
+	$this->db->flush_cache();
+	return $query->row()->name;
+	//return 1;
+  }
 
 }
