@@ -49,7 +49,7 @@
     </li>
     <li>
       <span class="desc">Deadline</span>
-      <span class="info"><?=$query->row()->deadline?></span>
+      <span class="info"><?=is_null($query->row()->deadline)?'n/a':$query->row()->deadline?></span>
     </li>
     <li>
       <span class="desc">Description</span>

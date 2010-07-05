@@ -134,16 +134,12 @@
       form_radio($type_3).form_label($type_3['desc'],$type_3['id']).
       form_radio($type_4).form_label($type_4['desc'],$type_4['id']).form_fieldset_close(),
     form_label($remarks['desc'],$remarks['id']).form_textarea($remarks),
-  );
+  );?>
   
-  foreach($form_element as $item) {
-    echo '<li>'.$item.'</li>';
-  }
-  
-  
-  
-  echo form_reset('reset','Reset');
-  echo form_submit('login','Register');
-  echo form_close();
-  
-//end of addresident.php
+<?php foreach($form_element as $item): ?>
+    <li><?=$item?></li>
+<?php endforeach; ?>
+    
+<?=form_reset('reset','Reset');?>
+<?=form_submit('login','Register');?>
+<?=form_close();?>

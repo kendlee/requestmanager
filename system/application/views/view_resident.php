@@ -6,26 +6,6 @@
     ) 
   );
   //TODO:place all of the attributes
-  //echo $query->row()->name;
-  /*$form_element = array (
-    form_label($first_name['desc'],$first_name['id']).form_input($first_name),
-    form_label($last_name['desc'],$last_name['id']).form_input($last_name),
-    form_label($address['desc'],$address['id']).form_textarea($address),
-    form_fieldset('Sex').form_radio($sex_m).form_label($sex_m['id'],$sex_m['id']).
-      form_radio($sex_f).form_label($sex_f['id'],$sex_f['id']).form_fieldset_close(),
-    form_fieldset('Civil status').form_radio($status_s).form_label($status_s['id'],$status_s['id']).
-      form_radio($status_m).form_label($status_m['id'],$status_m['id']).
-      form_radio($status_l).form_label($status_l['id'],$status_l['id']).
-      form_radio($status_w).form_label($status_w['id'],$status_w['id']).form_fieldset_close(),
-    form_label($precinct['desc'],$precinct['id']).form_input($precinct),
-    form_label($barangay['desc'],$barangay['id']).form_input($barangay),
-    '<label>Birthday</label>'.$formdate->selectMonth().$formdate->selectDay().$formdate->selectYear(),
-    form_fieldset('Category').form_radio($type_1).form_label($type_1['desc'],$type_1['id']).
-      form_radio($type_2).form_label($type_2['desc'],$type_2['id']).
-      form_radio($type_3).form_label($type_3['desc'],$type_3['id']).
-      form_radio($type_4).form_label($type_4['desc'],$type_4['id']).form_fieldset_close(),
-    form_label($remarks['desc'],$remarks['id']).form_textarea($remarks),
-  );*/
   $this->CI->db->flush_cache();
   $req_query =  $this->CI->db->get_where('requests',
     array(
@@ -36,6 +16,7 @@
 ?>
 
 <div id="resident_info">
+  <a href="<?php echo site_url('resident/edit/'.$query->row()->id)?>">Edit details</a>
   <a href="<?php echo site_url('manager/add_request/'.$query->row()->id)?>">Add request</a>
   <ul>
     <li>
@@ -59,8 +40,20 @@
       <span class="info"><?=$query->row()->birthday?></span>
     </li>
     <li>
+      <span class="desc">Category</span>
+      <span class="info"><?=array_get('CATEGORY',$query->row()->category)?></span>
+    </li>
+    <li>
       <span class="desc">Barangay</span>
       <span class="info"><?=$query->row()->barangay?></span>
+    </li>
+    <li>
+      <span class="desc">Precinct</span>
+      <span class="info"><?=$query->row()->precinct?></span>
+    </li>
+    <li>
+      <span class="desc">Remarks</span>
+      <span class="info"><?=$query->row()->remarks?></span>
     </li>
     <li>
       <span class="req_desc">Requests </span>
@@ -84,8 +77,8 @@
 	    <td class="req_id"><a href="<?=site_url('request/index/'.$row->id)?>"><?=$row->id?></a></td>
 	    <td class="req_date"><?=$row->creation_date?></td>
 	    <!--<td class="req_resident"><a href="<?//=site_url('resident/index/'.$row->id)?>"><?//=$row->name?></a></td>-->
-	    <td class="req_deadline"><?=$row->deadline?></td>
-	    <td class="req_status"><?=$row->status?></td>
+	    <td class="req_deadline"><?=is_null($row->deadline)?'n/a':$row->deadline?></td>
+	    <td class="req_status"><?=array_get('STATUS',$row->status)?></td>
 	    <td class="req_description"><?=$row->description?></td>
 	    <td class="req_remark"><?=$row->remarks?></td>
 	  </tr>

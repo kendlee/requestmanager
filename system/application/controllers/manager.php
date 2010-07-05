@@ -1,10 +1,11 @@
 <?php
+
 class Manager extends Controller {
   public $homepage = '';
   
   function Manager() {
     parent::Controller();
-    if ($this->is_logged_in()) {
+    if (is_logged_in()) {
       $this->homepage = "manager/by_resident/1";
     }
     else {
@@ -13,14 +14,10 @@ class Manager extends Controller {
   }
   
   /* simple function to check whether logged in or out*/
-  function is_logged_in() {
-    //echo $this->session->userdata('username');
-    return $this->session->userdata('username')!='';
-  }
   
   /* loads login page */
   function index(/*$page = "", $criteria = "", $asc = ""*/) {
-    if ($this->is_logged_in()) {
+    if (is_logged_in()) {
       redirect($this->homepage,'refresh');
     }
     else {
@@ -36,7 +33,7 @@ class Manager extends Controller {
   /* loads default home page (by_resident view)*/
   function by_resident($view = 1) {
     //load main view
-    if ($this->is_logged_in()) {
+    if (is_logged_in()) {
       $display = array (
 	'view' => $view
       ); //to select which of the 4 category be shown in the screen
@@ -84,14 +81,14 @@ class Manager extends Controller {
   }
   function add_request() {
     //todo: only logged in user can access
-	$this->load->model('Resident_manager','residentdb');
-	$resident_id = $this->uri->segment(3);
+    $this->load->model('Resident_manager','residentdb');
+    $resident_id = $this->uri->segment(3);
 	//$this->residentdb->
     $request_credentials = array (
       'user_id' => $this->session->userdata('id'),
       'encoder_name' => $this->session->userdata('real_name'), //realname of encoder
-	  'resident_id' => $resident_id,
-	  'resident_name' => $this->residentdb->get_resident_name($resident_id)
+      'resident_id' => $resident_id,
+      'resident_name' => $this->residentdb->get_resident_name($resident_id),
     );
     
     $params = array (
@@ -154,19 +151,25 @@ class Manager extends Controller {
     $this->residentdb->add_resident($full_name, $address, $sex, $status, $precinct, $barangay, $birthday, $category, $remarks);
     redirect($this->homepage,'refresh');
   }
-  /*id INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-  create_user_id int ( 11 ),
-  FOREIGN KEY (create_user_id) REFERENCES users(id),
-  creation_date DATE,
-  mod_user_id int ( 11 ),
-  FOREIGN KEY (mod_user_id) REFERENCES users(id),
-  modified_date DATE,
-  resident_id int ( 11 ),
-  FOREIGN KEY (resident_id) REFERENCES residents(id),
-  description VARCHAR ( 255 ),
-  status VARCHAR ( 15 ),
-  remarks VARCHAR ( 255 ),
-  deadline DATE*/
+  function update_resident() {
+    //todo: only logged in user can access
+    $this->load->model('Resident_manager','residentdb');
+    $this->load->library('input');
+    $id = $this->input->post('id');
+    $full_name = $this->input->post('last_name').', '.$this->input->post('first_name');
+    $address = $this->input->post('address');
+    $sex = $this->input->post('sex');
+    $status = $this->input->post('status');
+    $precinct = $this->input->post('precinct');
+    $barangay = $this->input->post('barangay');
+    $birthday = $this->input->post('year').$this->input->post('month').$this->input->post('day');
+    $category = $this->input->post('type');
+    $remarks = $this->input->post('remarks');
+    
+    $this->residentdb->update_resident($id,$full_name, $address, $sex, $status, $precinct, $barangay, $birthday, $category, $remarks);
+    redirect('resident/index/'.$id,'refresh');
+  }
+
   
   /*for requests table*/
   function register_request() {

@@ -59,21 +59,36 @@ define('STATUS_4','Complete');*/
     'CATEGORY_2'=>'District 2, Not registered',
     'CATEGORY_3'=>'QC Resident, Not District 2',
     'CATEGORY_4'=>'Outside QC',
-	'CIVIL_s'=>'S',
-	'CIVIL_m'=>'M',
-	'CIVIL_l'=>'L',
-	'CIVIL_w'=>'W',	
+    'CIVIL_s'=>'S',
+    'CIVIL_m'=>'M',
+    'CIVIL_l'=>'L',
+    'CIVIL_w'=>'W',	
     'SEX_m'=>'male',
     'SEX_f'=>'female',
     'STATUS_1'=>'New',
     'STATUS_2'=>'Rejected',
     'STATUS_3'=>'Pending',
-    'STATUS_4'=>'Complete'
+    'STATUS_4'=>'Complete',
+    'TYPE_0'=>'Encoder',
+    'TYPE_1'=>'Adminstrator',
+    'Encoder'=>0,
+    'Administrator'=>1,
   );
+
   
 function array_get($key,$index=NULL) {
   global $req_constants;
   return is_null($index) ? $req_constants[$key] : $req_constants[$key."_".$index] ;
+}
+
+function is_logged_in() {
+  $CI = & get_instance();
+  return $CI->session->userdata('username')!='';
+}
+
+function is_admin() {
+  $CI = & get_instance();
+  return $CI->session->userdata('type')==array_get('Administrator');
 }
 
 /*define('STATUS_NEW',1);

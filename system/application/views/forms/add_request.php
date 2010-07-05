@@ -10,8 +10,6 @@
   
   $attributes = array('id' => "addrequest_form");
   
-  echo '<h2>Add request</h2>';
-  
   echo form_open('manager/register_request',$attributes,$hidden);
   
   $description = array (
@@ -46,19 +44,19 @@
   $status_2 = array (
     'name' => 'status',
     'id' => 'stat2',
-    'desc' => 'Rejected',
+    'desc' => array_get('STATUS',4),
     'value' => '4'
   );
   $status_3 = array (
     'name' => 'status',
     'id' => 'stat3',
-    'desc' => 'Pending',
+    'desc' => array_get('STATUS',2),
     'value' => '2'
   );
   $status_4 = array (
     'name' => 'status',
     'id' => 'stat4',
-    'desc' => 'Complete',
+    'desc' => array_get('STATUS',3),
     'value' => '3'
   );
   
@@ -90,15 +88,12 @@
       form_radio($status_4).form_label($status_4['desc'],$status_4['id']).form_fieldset_close(),
     form_label($remarks['desc'],$remarks['id']).form_textarea($remarks),
   );
+?>
   
-  foreach($form_element as $item) {
-    echo '<li>'.$item.'</li>';
-  }
-  
-  
-  
-  echo form_reset('reset','Reset');
-  echo form_submit('login','Register');
-  echo form_close();
-  
-//end of addresident.php
+<?php foreach($form_element as $item):?>
+  <li><?=$item?></li>
+<?php endforeach;?>
+
+<?=form_reset('reset','Reset')?>
+<?=form_submit('login','Register')?>
+<?=form_close()?>
